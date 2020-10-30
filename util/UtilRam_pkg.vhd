@@ -38,4 +38,22 @@ package UtilRam_pkg is
     );
   end component;
 
+  -- 1-read 1-write RAM with 1 clk.
+  component UtilRam1R1W1CLK is
+    generic (
+      WIDTH                     : natural;
+      DEPTH_LOG2                : natural;
+      RAM_CONFIG                : string := ""
+    );
+    port (
+      clk                       : in  std_logic;
+      w_ena                     : in  std_logic;
+      w_addr                    : in  std_logic_vector(DEPTH_LOG2-1 downto 0);
+      w_data                    : in  std_logic_vector(WIDTH-1 downto 0);
+      r_ena                     : in  std_logic := '1';
+      r_addr                    : in  std_logic_vector(DEPTH_LOG2-1 downto 0);
+      r_data                    : out std_logic_vector(WIDTH-1 downto 0)
+    );
+  end component;
+
 end UtilRam_pkg;

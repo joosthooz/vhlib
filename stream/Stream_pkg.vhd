@@ -79,6 +79,31 @@ package Stream_pkg is
     );
   end component;
 
+  component StreamFIFO_1clk is
+    generic (
+      DEPTH_LOG2                : natural;
+      DATA_WIDTH                : natural;
+      XCLK_STAGES               : natural := 0;
+      RAM_CONFIG                : string := ""
+    );
+    port (
+      in_clk                    : in  std_logic;
+      in_reset                  : in  std_logic;
+      in_valid                  : in  std_logic;
+      in_ready                  : out std_logic;
+      in_data                   : in  std_logic_vector(DATA_WIDTH-1 downto 0);
+      in_rptr                   : out std_logic_vector(DEPTH_LOG2 downto 0);
+      in_wptr                   : out std_logic_vector(DEPTH_LOG2 downto 0);
+      out_clk                   : in  std_logic;
+      out_reset                 : in  std_logic;
+      out_valid                 : out std_logic;
+      out_ready                 : in  std_logic;
+      out_data                  : out std_logic_vector(DATA_WIDTH-1 downto 0);
+      out_rptr                  : out std_logic_vector(DEPTH_LOG2 downto 0);
+      out_wptr                  : out std_logic_vector(DEPTH_LOG2 downto 0)
+    );
+  end component;
+
   component StreamBuffer is
     generic (
       MIN_DEPTH                 : natural;
